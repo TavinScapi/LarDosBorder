@@ -143,3 +143,39 @@ document.addEventListener('DOMContentLoaded', function () {
         yearElement.textContent = yearElement.textContent.replace('2023', currentYear);
     }
 });
+
+
+
+
+
+
+
+// Lightbox para a galeria
+const galleryImages = document.querySelectorAll('.about-gallery img');
+const lightbox = document.createElement('div');
+lightbox.className = 'lightbox';
+lightbox.innerHTML = `
+  <span class="close-lightbox">&times;</span>
+  <img src="" alt="">
+`;
+
+document.body.appendChild(lightbox);
+
+galleryImages.forEach(img => {
+    img.addEventListener('click', () => {
+        const lightboxImg = lightbox.querySelector('img');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+    });
+});
+
+lightbox.querySelector('.close-lightbox').addEventListener('click', () => {
+    lightbox.classList.remove('active');
+});
+
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+    }
+});
